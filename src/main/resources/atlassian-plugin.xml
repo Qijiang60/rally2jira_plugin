@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<atlassian-plugin key="${project.groupId}.${project.artifactId}" name="${project.name}" plugins-version="2">
+  <plugin-info>
+    <description>${project.description}</description>
+    <version>${project.version}</version>
+    <vendor name="${project.organization.name}" url="${project.organization.url}"/>
+    <param name="plugin-icon">images/pluginIcon.png</param>
+    <param name="plugin-logo">images/pluginLogo.png</param>
+  </plugin-info>
+  <!-- add our i18n resource -->
+  <resource type="i18n" name="i18n" location="rally2jira_plugin"/>
+  <!-- add our web resources -->
+  <web-resource key="rally2jira_plugin-resources" name="rally2jira_plugin Web Resources">
+    <dependency>com.atlassian.auiplugin:ajs</dependency>
+    <resource type="download" name="rally2jira_plugin.css" location="/css/rally2jira_plugin.css"/>
+    <resource type="download" name="rally2jira_plugin.js" location="/js/rally2jira_plugin.js"/>
+    <resource type="download" name="images/" location="/images"/>
+    <context>rally2jira_plugin</context>
+  </web-resource>
+  <!-- publish our component -->
+  <component key="myPluginComponent" class="ceb.jira.migration.MyPluginComponentImpl" public="true">
+    <interface>ceb.jira.migration.MyPluginComponent</interface>
+  </component>
+  <!-- import from the product container -->
+  <component-import key="applicationProperties" interface="com.atlassian.sal.api.ApplicationProperties"/>
+  <rest name="Database Rest Api" i18n-name-key="database-rest-api.name" key="database-rest-api" path="/db" version="1.1">
+    <description key="database-rest-api.description">The Database Rest Api Plugin</description>
+  </rest>
+</atlassian-plugin>
